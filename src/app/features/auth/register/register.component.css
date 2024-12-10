@@ -1,0 +1,25 @@
+button:disabled {
+  background-color: #cccccc; /* color when disabled */
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.enabled-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.disabled-button {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+
+.valid-border {
+  border-color: #4CAF50; /* green border */
+}
+
+.invalid-border {
+  border-color: #f44336; /* red border */
+}

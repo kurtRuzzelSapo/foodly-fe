@@ -1,0 +1,75 @@
+<div class="w-full h-dvh flex justify-between">
+  <!-- left-card -->
+  <div class="w-full lg:w-7/10 p-8 flex flex-col">
+    <img src="Logo.png" width="60" alt="Logo" class="mb-7" />
+    <div class="flex flex-col items-center justify-start text-center h-full">
+        <h1 class="font-outfit font-bold text-8xl">Welcome!</h1>
+        <p class="font-outfit font-semibold text-xl my-4">Signup to get started in Foodly</p>
+
+        <form [formGroup]="signupForm"  (ngSubmit)="register()" action="index.php" method="POST" class="flex flex-col items-center mt-10">
+            <input  [ngClass]="{
+              'valid-border': username?.valid,
+              'invalid-border': username?.invalid && (password?.dirty || password?.touched)
+            }" type="text" formControlName="username" class="w-custom-width h-custom-height placeholder:font-semibold p-4 mt-12 text-lg rounded-lg border-2 border-gray-300  placeholder:text-gray-500 font-outfit" placeholder="Your username" required />
+            <div class="text-red-600 font-semibold">
+              <span  *ngIf="username?.errors?.['required']">Username is required.</span>
+                <span *ngIf="username?.errors?.['minlength']">Username is must be 6 characters.</span>
+            </div>
+
+            <input  [ngClass]="{
+              'valid-border': email?.valid,
+              'invalid-border': email?.invalid && (password?.dirty || password?.touched)
+            }" type="email" formControlName="email" class="w-custom-width h-custom-height placeholder:font-semibold p-4 mt-3 text-lg rounded-lg border-2 border-gray-300 placeholder:text-gray-500 font-outfit" placeholder="Your email" required />
+            <div class="text-red-600 font-semibold">
+              <span *ngIf="email?.errors?.['required']">Email is required.</span>
+              <span *ngIf="email?.errors?.['email']">Please enter a valid email.</span>
+              <div *ngIf="backendErrors && backendErrors['email']">
+                <p *ngFor="let error of backendErrors['email']">{{ error }}</p>
+              </div>
+            </div>
+
+
+            <input  [ngClass]="{
+              'valid-border': password?.valid,
+              'invalid-border': password?.invalid && (password?.dirty || password?.touched)
+            }" type="password" formControlName="password" class="w-custom-width h-custom-height placeholder:font-semibold  p-4 mt-3 text-lg rounded-lg border-2 border-gray-300 placeholder:text-gray-500 font-outfit" placeholder="Your password" required />
+              <div class="text-red-600 font-semibold">
+                <span *ngIf="password?.errors?.['required']">Password is required.</span>
+                <span *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters.</span>
+              </div>
+
+
+              <input
+              [ngClass]="{
+                'valid-border': passwordConfirmation?.valid,
+                'invalid-border': passwordConfirmation?.invalid && (passwordConfirmation?.dirty || passwordConfirmation?.touched)
+              }"
+              type="password"
+              formControlName="password_confirmation"
+              class="w-custom-width h-custom-height placeholder:font-semibold p-4 mt-3 text-lg rounded-lg border-2 border-gray-300 placeholder:text-gray-500 font-outfit"
+              placeholder="Confirm password"
+              required
+            />
+
+            <div class="text-red-600 font-semibold">
+              <span *ngIf="signupForm.errors?.['passwordMismatch']">Passwords do not match.</span>
+            </div>
+
+
+            <button  [disabled]="!signupForm.valid"
+            [ngClass]="signupForm.valid ? 'enabled-button' : 'disabled-button'" class="w-custom-width p-4 mt-20 mb-6 rounded-full bg-green-700 text-white font-outfit font-semibold text-lg transition hover:bg-green-800" type="submit">
+                Register
+            </button>
+        </form>
+
+        <p class="text-base font-outfit font-semibold">
+            Already have an account? <a routerLink="/login" class="text-green-700">Log up</a>
+        </p>
+    </div>
+</div>
+  <!-- right-card -->
+  <div class="right-card ">
+    <img class="h-full w-full object-cover" src="sign-up-picture.png" alt="Login Picture" />
+  </div>
+
+</div>
